@@ -13,7 +13,7 @@ export default function Canvas() {
   return (
     <div className="canvas">
       <Header />
-      <BoardContainer />
+      <BoardContainer curLetters={curLetters} />
       <GameKeyboard curLetters={curLetters} setCurLetters={setCurLetters} />
     </div>
   );

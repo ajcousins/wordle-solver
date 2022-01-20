@@ -40,8 +40,28 @@ body {
 
 .board-container {
   width: 100%;
-  height: 2em;
-  // background-color: cyan;
+  height: 100%;
+  background-color: cyan;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__board-row {
+    // background-color: red;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+  }
+  &__cell {
+    height: 2.875em;
+    width: 2.875em;
+    border: 2px solid #d3d6da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    user-select: none;
+  }
 }
 
 .game-keyboard {

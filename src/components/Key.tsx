@@ -8,8 +8,21 @@ interface IProps {
 
 export default function Key({ char, setCurLetters, curLetters }: IProps) {
   const handlePress = (char: string) => {
-    // console.log("handle press", char);
     const arr = curLetters.split("");
+    // console.log("handle press", char);
+    if (char === "ENTER") {
+      return;
+    }
+
+    if (char === "DEL") {
+      if (arr.length < 1) return;
+      else {
+        arr.pop();
+        setCurLetters(arr.join(""));
+      }
+      return;
+    }
+
     if (arr.length > 4) return;
     else {
       arr.push(char);
@@ -25,7 +38,7 @@ export default function Key({ char, setCurLetters, curLetters }: IProps) {
     return (
       <button
         className="game-keyboard__key game-keyboard__space-150"
-        // onClick={handlePress}
+        onClick={() => handlePress(char)}
       >
         {char}
       </button>

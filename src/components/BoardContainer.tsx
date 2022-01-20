@@ -1,5 +1,10 @@
-import React from 'react';
+import React from "react";
+import BoardRow from "./BoardRow";
 
-export default function BoardContainer() {
-  return <div className='board-container'>BoardContainer</div>;
+export default function BoardContainer({ curLetters }: { curLetters: string }) {
+  return (
+    <div className="board-container">
+      <BoardRow curLetters={curLetters} />
+    </div>
+  );
 }
