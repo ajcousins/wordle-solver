@@ -1,31 +1,49 @@
-import React from "react";
-import { qwertyTop, qwertyMid, qwertyBot } from "../reference/qwerty";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { qwerty } from "../reference/qwerty";
+import Key from "./Key";
 
-export default function GameKeyboard() {
+interface IProps {
+  setCurLetters: Dispatch<SetStateAction<string>>;
+  curLetters: string;
+}
+
+export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {
   return (
     <div className="game-keyboard">
       <div className="game-keyboard__inner">
         <div className="game-keyboard__row">
-          {qwertyTop.map((key) => {
-            return <button className="game-keyboard__key">{key}</button>;
+          {qwerty[0].map((key) => {
+            return (
+              <Key
+                char={key}
+                setCurLetters={setCurLetters}
+                curLetters={curLetters}
+              />
+            );
           })}
         </div>
         <div className="game-keyboard__row">
-          <div className="game-keyboard__spacer-half" />
-          {qwertyMid.map((key) => {
-            return <button className="game-keyboard__key">{key}</button>;
+          <div className="game-keyboard__spacer-050" />
+          {qwerty[1].map((key) => {
+            return (
+              <Key
+                char={key}
+                setCurLetters={setCurLetters}
+                curLetters={curLetters}
+              />
+            );
           })}
-          <div className="game-keyboard__spacer-half" />
+          <div className="game-keyboard__spacer-050" />
         </div>
         <div className="game-keyboard__row">
-          {qwertyBot.map((key) => {
-            if (key === "ENTER" || key === "DEL") {
-              return (
-                <button className="game-keyboard__key game-keyboard__space-150">
-                  {key}
-                </button>
-              );
-            } else return <button className="game-keyboard__key">{key}</button>;
+          {qwerty[2].map((key) => {
+            return (
+              <Key
+                char={key}
+                setCurLetters={setCurLetters}
+                curLetters={curLetters}
+              />
+            );
           })}
         </div>
       </div>

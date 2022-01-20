@@ -15,7 +15,7 @@ body {
   //     // justify-content: center;
   //     align-items: center;
   // text-align: center;
-  background-color: red;
+  // background-color: rgba(255, 0, 0, 0.11);
 }
 
 .canvas {
@@ -41,16 +41,16 @@ body {
 .board-container {
   width: 100%;
   height: 2em;
-  background-color: cyan;
+  // background-color: cyan;
 }
 
 .game-keyboard {
   width: 100%;
   height: 200px;
   margin-top: auto;
-  background-color: blue;
+  // background-color: blue;
   &__row {
-    background-color: cyan;
+    // background-color: cyan;
     display: flex;
     // justify-content: space-evenly;
     width: 100%;
@@ -76,12 +76,10 @@ body {
     justify-content: center;
     align-items: center;
   }
-  &__spacer-half {
-    display: block;
+  &__spacer-050 {
     flex: 0.5;
   }
   &__space-150 {
-    // display: block;
     flex: 1.5;
   }
 }

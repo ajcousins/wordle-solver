@@ -1,12 +1,20 @@
-import React from 'react';
-import Header from './Header';
-import BoardContainer from './BoardContainer';
-import GameKeyboard from './GameKeyboard'
+import React, { useState, useEffect } from "react";
+import Header from "./Header";
+import BoardContainer from "./BoardContainer";
+import GameKeyboard from "./GameKeyboard";
 
 export default function Canvas() {
-  return <div className="canvas">
+  const [curLetters, setCurLetters] = useState("");
+
+  useEffect(() => {
+    console.log("curLetters:", curLetters);
+  }, [curLetters]);
+
+  return (
+    <div className="canvas">
       <Header />
       <BoardContainer />
-      <GameKeyboard />
-  </div>;
+      <GameKeyboard curLetters={curLetters} setCurLetters={setCurLetters} />
+    </div>
+  );
 }
