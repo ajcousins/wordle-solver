@@ -1,38 +1,47 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 interface IProps {
-  setCurLetters: Dispatch<SetStateAction<string>>;
+  setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
   char: string;
-  curLetters: string;
+  curLetters: {
+    char: string;
+    status: number;
+  }[];
 }
 
 export default function Key({ char, setCurLetters, curLetters }: IProps) {
   const handlePress = (char: string) => {
-    const arr = curLetters.split("");
-    // console.log("handle press", char);
-    if (char === "ENTER") {
-      return;
-    }
+    let arr = [...curLetters];
+
+    if (char === "ENTER") return;
 
     if (char === "DEL") {
+      arr = arr.filter((item) => !(item.char === ""));
       if (arr.length < 1) return;
       else {
         arr.pop();
-        setCurLetters(arr.join(""));
+        let blanks = 5 - arr.length;
+        while (blanks > 0) {
+          arr.push({ char: "", status: 0 });
+          blanks--;
+        }
+        setCurLetters(arr);
       }
       return;
     }
 
+    arr = arr.filter((item) => !(item.char === ""));
     if (arr.length > 4) return;
     else {
-      arr.push(char);
-      setCurLetters(arr.join(""));
+      arr.push({ char: char, status: 0 });
+      let blanks = 5 - arr.length;
+      while (blanks > 0) {
+        arr.push({ char: "", status: 0 });
+        blanks--;
+      }
+      setCurLetters(arr);
     }
   };
-
-  // const keyInput = () => {
-  //   console.log("key input", curLetters);
-  // };
 
   if (char === "ENTER" || char === "DEL") {
     return (

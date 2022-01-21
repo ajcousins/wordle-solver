@@ -1,14 +1,29 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Cell from "./Cell";
 
-export default function BoardRow({ curLetters }: { curLetters: string }) {
+interface IProps {
+  setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
+  curLetters: {
+    char: string;
+    status: number;
+  }[];
+}
+
+function numberRange(start: number, end: number) {
+  return new Array(end - start).fill(0).map((d, i) => i + start);
+}
+
+export default function BoardRow({ curLetters, setCurLetters }: IProps) {
   return (
     <div className="board-container__board-row">
-      <Cell char={curLetters[0]} />
-      <Cell char={curLetters[1]} />
-      <Cell char={curLetters[2]} />
-      <Cell char={curLetters[3]} />
-      <Cell char={curLetters[4]} />
+      {numberRange(0, 5).map((num, i) => (
+        <Cell
+          char={curLetters[num].char}
+          setCurLetters={setCurLetters}
+          curLetters={curLetters}
+          index={i}
+        />
+      ))}
     </div>
   );
 }

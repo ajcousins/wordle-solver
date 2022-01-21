@@ -3,8 +3,11 @@ import { qwerty } from "../reference/qwerty";
 import Key from "./Key";
 
 interface IProps {
-  setCurLetters: Dispatch<SetStateAction<string>>;
-  curLetters: string;
+  setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
+  curLetters: {
+    char: string;
+    status: number;
+  }[];
 }
 
 export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {

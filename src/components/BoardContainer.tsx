@@ -1,10 +1,18 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import BoardRow from "./BoardRow";
 
-export default function BoardContainer({ curLetters }: { curLetters: string }) {
+interface IProps {
+  setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
+  curLetters: {
+    char: string;
+    status: number;
+  }[];
+}
+
+export default function BoardContainer({ curLetters, setCurLetters }: IProps) {
   return (
     <div className="board-container">
-      <BoardRow curLetters={curLetters} />
+      <BoardRow curLetters={curLetters} setCurLetters={setCurLetters} />
     </div>
   );
 }
