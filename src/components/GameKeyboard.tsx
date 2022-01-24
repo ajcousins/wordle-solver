@@ -8,9 +8,14 @@ interface IProps {
     char: string;
     status: number;
   }[];
+  wordList: string[];
 }
 
-export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {
+export default function GameKeyboard({
+  setCurLetters,
+  curLetters,
+  wordList,
+}: IProps) {
   return (
     <div className="game-keyboard">
       <div className="game-keyboard__inner">
@@ -21,6 +26,7 @@ export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
+                wordList={wordList}
               />
             );
           })}
@@ -33,6 +39,7 @@ export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
+                wordList={wordList}
               />
             );
           })}
@@ -45,6 +52,7 @@ export default function GameKeyboard({ setCurLetters, curLetters }: IProps) {
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
+                wordList={wordList}
               />
             );
           })}

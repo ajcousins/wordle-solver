@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { filterList } from "../helpers/filterList";
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -7,13 +8,29 @@ interface IProps {
     char: string;
     status: number;
   }[];
+  wordList: string[];
 }
 
-export default function Key({ char, setCurLetters, curLetters }: IProps) {
+export default function Key({
+  char,
+  setCurLetters,
+  curLetters,
+  wordList,
+}: IProps) {
   const handlePress = (char: string) => {
     let arr = [...curLetters];
 
-    if (char === "ENTER") return;
+    if (char === "ENTER") {
+      // TO DO: Check if game state is correct for 'ENTER'
+      console.log("ENTER");
+
+      // const letterStates = curLetters.map((cell) => cell.status);
+      console.log("wordList before function:", wordList);
+
+      const newWordList = filterList(wordList, curLetters);
+      // console.log("newWordList:", newWordList);
+      return;
+    }
 
     if (char === "DEL") {
       arr = arr.filter((item) => !(item.char === ""));

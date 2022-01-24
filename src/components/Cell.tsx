@@ -31,11 +31,11 @@ export default function Cell({
       case 0:
         return "";
       case 1:
-        return "board-container__cell__OX";
-      case 2:
-        return "board-container__cell__XX";
-      case 3:
         return "board-container__cell__OO";
+      case 2:
+        return "board-container__cell__OX";
+      case 3:
+        return "board-container__cell__XX";
     }
   };
 
