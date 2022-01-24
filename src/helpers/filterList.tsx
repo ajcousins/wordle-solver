@@ -8,7 +8,7 @@ export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
 
   let wordListCopy = [...wordList];
   //   let status: string[] = [];
-  const curCharsArr = curLetters.map((word) => word.char); // ["Q", "W", "E", "R", "T"]
+  const curCharsArr = curLetters.map((word) => word.char.toLowerCase()); // ["Q", "W", "E", "R", "T"]
   //   console.log("Here", wordListCopy);
 
   for (let i = 0; i < 5; i++) {
@@ -23,6 +23,12 @@ export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
           //   console.log("wordArr:", wordArr);
 
           for (let j = 0; j < 5; j++) {
+            console.log(
+              `wordArr[${i}], curCharsArr[${j}]:`,
+              wordArr[i],
+              curCharsArr[j]
+            );
+
             if (wordArr[i] === curCharsArr[j]) return false;
           }
           return true;
