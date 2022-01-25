@@ -19,4 +19,5 @@ export const libraryArr = [
   "gauge",
   "miles",
   "probe",
+  "sugar",
 ];

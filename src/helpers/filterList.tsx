@@ -11,28 +11,56 @@ export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
   const curCharsArr = curLetters.map((word) => word.char.toLowerCase()); // ["Q", "W", "E", "R", "T"]
   //   console.log("Here", wordListCopy);
 
+  const seen: {
+    [index: string]: { status: number; count: number };
+  } = {};
+
+  // iterate through each letter in candidate cells
   for (let i = 0; i < 5; i++) {
-    switch (curLetters[i].status) {
+    const candidateLetter = curCharsArr[i];
+    const candidateStatus = curLetters[i].status;
+
+    switch (candidateStatus) {
       case 1:
-        // console.log("case 1");
+        /*
+          - For each letter in candidate cells...
+            - if this letter has already been seen with a yellow or green status:
+              - filter out any word if the letter appears twice
+            - if letter exists in any part of the word:
+              - filter it out of the array
+        */
 
-        // letter is NOT in word
-        // status.push("letter is NOT in word");
-        wordListCopy = wordListCopy.filter((word: string) => {
-          let wordArr = word.split("");
-          //   console.log("wordArr:", wordArr);
+        if (
+          seen[candidateLetter].status === 2 ||
+          seen[candidateLetter].status === 3
+        ) {
+          // This letter has already been seen in yellow or green, but this instance is grey, which
+          // means the letter doesn't appear this many times.
+          // If the letter appears "n-times" in a word, don't include it in return array.
+          wordListCopy = wordListCopy.filter((word: string) => {
+            // How many times does this letter appear in this word?
+            const thisLetterCount = word.split("").reduce((p, c) => {
+              return c === candidateLetter ? p + 1 : p;
+            }, 0);
 
-          for (let j = 0; j < 5; j++) {
-            console.log(
-              `wordArr[${i}], curCharsArr[${j}]:`,
-              wordArr[i],
-              curCharsArr[j]
-            );
+            if (seen[candidateLetter].count < thisLetterCount) {
+            }
+          });
+        } else {
+          wordListCopy = wordListCopy.filter((word: string) => {
+            return !word
+              .split("")
+              .some((char: string) => char === candidateLetter);
+          });
+        }
 
-            if (wordArr[i] === curCharsArr[j]) return false;
-          }
-          return true;
-        });
+        if (!seen[candidateLetter])
+          seen[candidateLetter] = { status: candidateStatus, count: 1 };
+        // candidateStatus only reflects first instance
+        else {
+          seen[candidateLetter].count++;
+        }
+
         break;
       case 2:
         // letter is in word at incorrect location
