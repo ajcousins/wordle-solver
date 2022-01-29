@@ -4,15 +4,9 @@ interface CellLetter {
 }
 
 export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
-  console.log("letterStates:", curLetters);
+  let possibleWords = [...wordList];
 
-  let wordListCopy = [...wordList];
-
-  const curCharsArr = curLetters.map((letter) => letter.char.toLowerCase()); // ["l", "a", "m", "p", "s"]
-
-  const yellowDict: {
-    [index: string]: number;
-  } = {};
+  const yellowDict: { [index: string]: number } = {};
   curLetters.forEach((letter: CellLetter) => {
     if (letter.status === 2) {
       if (!yellowDict[letter.char]) yellowDict[letter.char] = 1;
@@ -20,70 +14,53 @@ export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
     }
   }); // {"a" : 1, "v" : 2}
 
-  const greenIndexes = curLetters
-    .map((letter: CellLetter, i) => i)
-    .filter((i: number) => curLetters[i].status === 3); // [3, 4]
+  const colouredIndexes = curLetters
+    .map((letter, i) => i)
+    .filter(
+      (i: number) => curLetters[i].status === 2 || curLetters[i].status === 3
+    ); // [2, 3, 4] Indexes that are yellow or green
 
-  wordListCopy = wordListCopy.filter((word) => {
-    const wordArr = word.split(""); // ["p", "e", "a", "r", "s"]
+  const greyChars = curLetters
+    .filter((letter: CellLetter) => letter.status === 1)
+    .map((letter: CellLetter) => letter.char.toLowerCase()); // ["a", "m", "p"] Chars that are grey
 
-    // GREEN CELLS
-    // This filters out the most words, so should be performed first.
-    /*
-    For each letter in curCharArr:
-    If its status is green:
-    allow through filter
-    */
+  possibleWords = possibleWords.filter((possWord) => {
+    const possWordArr = possWord.split(""); // ["p", "e", "a", "r", "s"]
 
+    // --- CHECK GREEN CELLS ---
     for (let i = 0; i < 5; i++) {
-      // CHECK GREEN CELLS
       if (curLetters[i].status === 3) {
-        if (curLetters[i].char.toLowerCase() !== wordArr[i]) return false;
+        if (curLetters[i].char.toLowerCase() !== possWordArr[i]) return false;
       }
     }
 
-    // CHECK YELLOW CELLS
-    /*
-      Which letters are yellow? And how many are there? --> yellowDict
-
-      Of the yellow letters, is the same quantity present in this word after removing green indexes?
-
-      Iterate through yellowDict
-        If number of yellow letters doesn't match this word: return false
-      */
-
-    // REMOVE GREEN LETTERS
-    for (let j = greenIndexes.length - 1; j >= 0; j--) {
-      wordArr.splice(greenIndexes[j], 1);
+    // --- CHECK YELLOW CELLS ---
+    // Remove any green or yellow letters from candidate word
+    for (let j = colouredIndexes.length - 1; j >= 0; j--) {
+      possWordArr.splice(colouredIndexes[j], 1);
     }
 
-    // GET YELLOW LETTERS
+    // Get yellow letters
     const yellowLetters = Object.keys(yellowDict);
-    // yellowLetters.forEach((letter: string) => {
+
+    // Reject word if letter count does not match query letter count for remaining chars
     for (let i = 0; i < yellowLetters.length; i++) {
-      console.log("letter:", yellowLetters[i]);
-
-      const count = wordArr.reduce((p, c) => {
-        console.log("c, letter", c, yellowLetters[i].toLowerCase());
-
+      const count = possWordArr.reduce((p, c) => {
         return c === yellowLetters[i].toLowerCase() ? p + 1 : p;
       }, 0);
-      console.log(`letter ${yellowLetters[i]}, count: ${count}`);
-
-      console.log(
-        `count ${count} !== yellowDict[letter] ${yellowDict[yellowLetters[i]]}`
-      );
-      if (count !== yellowDict[yellowLetters[i]]) console.log(`REMOVE ${word}`);
-
       if (count !== yellowDict[yellowLetters[i]]) return false;
     }
-    // });
+
+    //  --- CHECK GREY CELLS ---
+    for (let i = 0; i < greyChars.length; i++) {
+      if (possWordArr.indexOf(greyChars[i]) !== -1) return false;
+    }
 
     // If word has gotten this far without returning false, return true/ allow through filter.
     return true;
   });
 
-  console.log("Filtered word list:", wordListCopy);
+  console.log("Filtered word list:", possibleWords);
 
-  return wordListCopy;
+  return possibleWords;
 };

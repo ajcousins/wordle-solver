@@ -9,6 +9,7 @@ interface IProps {
     status: number;
   }[];
   wordList: string[];
+  setWordList: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function Key({
@@ -16,12 +17,13 @@ export default function Key({
   setCurLetters,
   curLetters,
   wordList,
+  setWordList,
 }: IProps) {
   const handlePress = (char: string) => {
     let arr = [...curLetters];
 
     if (char === "ENTER") {
-      // TO DO: Check if game state is correct for 'ENTER'
+      // TO DO: Check if game state is correct for 'ENTER'. ie, no statuses === 0
       console.log("ENTER");
 
       // const letterStates = curLetters.map((cell) => cell.status);
@@ -29,6 +31,8 @@ export default function Key({
 
       const newWordList = filterList(wordList, curLetters);
       // console.log("newWordList:", newWordList);
+
+      setWordList(newWordList);
       return;
     }
 

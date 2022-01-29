@@ -9,12 +9,14 @@ interface IProps {
     status: number;
   }[];
   wordList: string[];
+  setWordList: Dispatch<SetStateAction<string[]>>;
 }
 
 export default function GameKeyboard({
   setCurLetters,
   curLetters,
   wordList,
+  setWordList,
 }: IProps) {
   return (
     <div className="game-keyboard">
@@ -27,6 +29,7 @@ export default function GameKeyboard({
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
                 wordList={wordList}
+                setWordList={setWordList}
               />
             );
           })}
@@ -40,6 +43,7 @@ export default function GameKeyboard({
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
                 wordList={wordList}
+                setWordList={setWordList}
               />
             );
           })}
@@ -53,6 +57,7 @@ export default function GameKeyboard({
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
                 wordList={wordList}
+                setWordList={setWordList}
               />
             );
           })}

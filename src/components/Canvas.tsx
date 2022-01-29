@@ -3,7 +3,7 @@ import Header from "./Header";
 import BoardContainer from "./BoardContainer";
 import GameKeyboard from "./GameKeyboard";
 import Instruction from "./Instruction";
-import { libraryArr } from "../reference/libraryArrTest";
+import { libraryArr } from "../reference/libOutput";
 
 export default function Canvas() {
   const [curLetters, setCurLetters] = useState([
@@ -39,6 +39,7 @@ export default function Canvas() {
         curLetters={curLetters}
         setCurLetters={setCurLetters}
         wordList={wordList}
+        setWordList={setWordList}
       />
     </div>
   );
