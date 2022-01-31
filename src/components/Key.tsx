@@ -26,11 +26,13 @@ export default function Key({
       // TO DO: Check if game state is correct for 'ENTER'. ie, no statuses === 0
       console.log("ENTER");
 
-      // const letterStates = curLetters.map((cell) => cell.status);
-      console.log("wordList before function:", wordList);
-
+      // Generate list of result words
       const newWordList = filterList(wordList, curLetters);
-      // console.log("newWordList:", newWordList);
+      console.log("newWordList:", newWordList);
+
+      // push curLetters to history
+
+      // clear curLetters
 
       setWordList(newWordList);
       return;

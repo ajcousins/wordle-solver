@@ -15,6 +15,7 @@ export default function Canvas() {
   ]);
   const [gameState, setGameState] = useState(0);
   const [wordList, setWordList] = useState<string[]>([]);
+  const [guessHistory, setGuessHistory] = useState([]);
 
   // Load Word List
   useEffect(() => {
@@ -34,7 +35,11 @@ export default function Canvas() {
     <div className="canvas">
       <Header />
       <Instruction gameState={gameState} />
-      <BoardContainer curLetters={curLetters} setCurLetters={setCurLetters} />
+      <BoardContainer
+        curLetters={curLetters}
+        setCurLetters={setCurLetters}
+        guessHistory={guessHistory}
+      />
       <GameKeyboard
         curLetters={curLetters}
         setCurLetters={setCurLetters}
