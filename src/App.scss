@@ -60,6 +60,7 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 5px;
+    margin-bottom: 5px;
   }
   &__cell {
     height: 2.875em;

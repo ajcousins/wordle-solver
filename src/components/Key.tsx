@@ -10,6 +10,13 @@ interface IProps {
   }[];
   wordList: string[];
   setWordList: Dispatch<SetStateAction<string[]>>;
+  guessHistory: {
+    char: string;
+    status: number;
+  }[][];
+  setGuessHistory: Dispatch<
+    SetStateAction<{ char: string; status: number }[][]>
+  >;
 }
 
 export default function Key({
@@ -18,21 +25,40 @@ export default function Key({
   curLetters,
   wordList,
   setWordList,
+  guessHistory,
+  setGuessHistory,
 }: IProps) {
   const handlePress = (char: string) => {
     let arr = [...curLetters];
 
     if (char === "ENTER") {
-      // TO DO: Check if game state is correct for 'ENTER'. ie, no statuses === 0
       console.log("ENTER");
+
+      // Check if game state is correct for 'ENTER'. ie, no statuses === 0
+      if (
+        curLetters
+          .map((letter) => letter.status)
+          .reduce((p: number, c: number) => c + p, 0) === 0
+      )
+        return;
 
       // Generate list of result words
       const newWordList = filterList(wordList, curLetters);
       console.log("newWordList:", newWordList);
 
       // push curLetters to history
+      const historyCopy = [...guessHistory];
+      historyCopy.push(curLetters);
+      setGuessHistory(historyCopy);
 
       // clear curLetters
+      setCurLetters([
+        { char: "", status: 0 },
+        { char: "", status: 0 },
+        { char: "", status: 0 },
+        { char: "", status: 0 },
+        { char: "", status: 0 },
+      ]);
 
       setWordList(newWordList);
       return;

@@ -10,6 +10,13 @@ interface IProps {
   }[];
   wordList: string[];
   setWordList: Dispatch<SetStateAction<string[]>>;
+  guessHistory: {
+    char: string;
+    status: number;
+  }[][];
+  setGuessHistory: Dispatch<
+    SetStateAction<{ char: string; status: number }[][]>
+  >;
 }
 
 export default function GameKeyboard({
@@ -17,6 +24,8 @@ export default function GameKeyboard({
   curLetters,
   wordList,
   setWordList,
+  guessHistory,
+  setGuessHistory,
 }: IProps) {
   return (
     <div className="game-keyboard">
@@ -30,6 +39,8 @@ export default function GameKeyboard({
                 curLetters={curLetters}
                 wordList={wordList}
                 setWordList={setWordList}
+                guessHistory={guessHistory}
+                setGuessHistory={setGuessHistory}
               />
             );
           })}
@@ -44,6 +55,8 @@ export default function GameKeyboard({
                 curLetters={curLetters}
                 wordList={wordList}
                 setWordList={setWordList}
+                guessHistory={guessHistory}
+                setGuessHistory={setGuessHistory}
               />
             );
           })}
@@ -58,6 +71,8 @@ export default function GameKeyboard({
                 curLetters={curLetters}
                 wordList={wordList}
                 setWordList={setWordList}
+                guessHistory={guessHistory}
+                setGuessHistory={setGuessHistory}
               />
             );
           })}
