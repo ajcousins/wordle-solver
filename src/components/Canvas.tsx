@@ -29,9 +29,39 @@ export default function Canvas() {
   useEffect(() => {
     console.log("curLetters:", curLetters);
     // TO DO: Update gameState if no chars are blank.
+    console.log("Blanks:", checkBlanks(curLetters));
+    console.log("Status:", checkStati(curLetters));
+    if (checkBlanks(curLetters) && !checkStati(curLetters)) {
+      setGameState(1);
+    } else if (checkBlanks(curLetters) && checkStati(curLetters)) {
+      setGameState(2);
+    } else if (gameState === 3) return;
+    else setGameState(0);
 
     // TO DO: Update gameState if no chars are blank and no statuses === 0.
   }, [curLetters]);
+
+  const checkBlanks = (curLetters: any): boolean => {
+    if (
+      curLetters
+        .map((letter: any) => letter.char)
+        .reduce(
+          (p: boolean, c: any) => (c === "" || p === true ? true : false),
+          false
+        )
+    )
+      return false;
+    return true;
+  };
+  const checkStati = (curLetters: any): boolean => {
+    if (
+      curLetters
+        .map((letter: any) => letter.status)
+        .reduce((p: number, c: number) => c + p, 0) < 5
+    )
+      return false;
+    return true;
+  };
 
   return (
     <div className="canvas">
@@ -49,6 +79,7 @@ export default function Canvas() {
         setWordList={setWordList}
         guessHistory={guessHistory}
         setGuessHistory={setGuessHistory}
+        setGameState={setGameState}
       />
     </div>
   );

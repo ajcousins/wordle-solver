@@ -17,6 +17,7 @@ interface IProps {
   setGuessHistory: Dispatch<
     SetStateAction<{ char: string; status: number }[][]>
   >;
+  setGameState: Dispatch<SetStateAction<number>>;
 }
 
 export default function Key({
@@ -27,6 +28,7 @@ export default function Key({
   setWordList,
   guessHistory,
   setGuessHistory,
+  setGameState,
 }: IProps) {
   const handlePress = (char: string) => {
     let arr = [...curLetters];
@@ -61,6 +63,8 @@ export default function Key({
       ]);
 
       setWordList(newWordList);
+      setGameState(3);
+
       return;
     }
 

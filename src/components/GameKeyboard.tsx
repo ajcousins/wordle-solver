@@ -17,6 +17,7 @@ interface IProps {
   setGuessHistory: Dispatch<
     SetStateAction<{ char: string; status: number }[][]>
   >;
+  setGameState: Dispatch<SetStateAction<number>>;
 }
 
 export default function GameKeyboard({
@@ -26,6 +27,7 @@ export default function GameKeyboard({
   setWordList,
   guessHistory,
   setGuessHistory,
+  setGameState,
 }: IProps) {
   return (
     <div className="game-keyboard">
@@ -41,6 +43,7 @@ export default function GameKeyboard({
                 setWordList={setWordList}
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
+                setGameState={setGameState}
               />
             );
           })}
@@ -57,6 +60,7 @@ export default function GameKeyboard({
                 setWordList={setWordList}
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
+                setGameState={setGameState}
               />
             );
           })}
@@ -73,6 +77,7 @@ export default function GameKeyboard({
                 setWordList={setWordList}
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
+                setGameState={setGameState}
               />
             );
           })}
