@@ -71,6 +71,8 @@ export default function Canvas() {
         curLetters={curLetters}
         setCurLetters={setCurLetters}
         guessHistory={guessHistory}
+        wordList={wordList}
+        gameState={gameState}
       />
       <GameKeyboard
         curLetters={curLetters}

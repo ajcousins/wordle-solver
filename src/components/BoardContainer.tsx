@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import BoardRow from "./BoardRow";
 import GuessHistory from "./GuessHistory";
+import PossWords from "./PossWords";
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -12,17 +13,25 @@ interface IProps {
     char: string;
     status: number;
   }[][];
+  wordList: string[];
+  gameState: number;
 }
 
 export default function BoardContainer({
   curLetters,
   setCurLetters,
   guessHistory,
+  wordList,
+  gameState,
 }: IProps) {
   return (
     <div className="board-container">
       <GuessHistory guessHistory={guessHistory} setCurLetters={setCurLetters} />
-      <BoardRow curLetters={curLetters} setCurLetters={setCurLetters} />
+      {gameState === 3 ? (
+        <PossWords wordList={wordList} />
+      ) : (
+        <BoardRow curLetters={curLetters} setCurLetters={setCurLetters} />
+      )}
     </div>
   );
 }

@@ -72,6 +72,7 @@ body {
     justify-content: center;
     font-weight: bold;
     user-select: none;
+    cursor: pointer;
     &__OX {
       border-color: #c9b458;
       background-color: #c9b458;
@@ -86,6 +87,25 @@ body {
       border-color: #787c7e;
       background-color: #787c7e;
       color: white;
+    }
+  }
+  &__poss-words {
+    // background-color: cyan;
+    // height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    &__word {
+      // background-color: red;
+      border: 1.5px solid #d3d6da;
+      padding: 0.2em;
+      font-size: 0.8rem;
+      user-select: none;
+      cursor: pointer;
+      // height: 20px;
+      // width: 20px;
     }
   }
 }
