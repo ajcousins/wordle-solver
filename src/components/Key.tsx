@@ -37,11 +37,7 @@ export default function Key({
       console.log("ENTER");
 
       // Check if game state is correct for 'ENTER'. ie, no statuses === 0
-      if (
-        curLetters
-          .map((letter) => letter.status)
-          .reduce((p: number, c: number) => c + p, 0) === 0
-      )
+      if (curLetters.map((letter: any) => letter.status).indexOf(0) !== -1)
         return;
 
       // Generate list of result words
