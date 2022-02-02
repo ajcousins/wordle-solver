@@ -28,7 +28,7 @@ export default function BoardContainer({
     <div className="board-container">
       <GuessHistory guessHistory={guessHistory} setCurLetters={setCurLetters} />
       {gameState === 3 ? (
-        <PossWords wordList={wordList} />
+        <PossWords wordList={wordList} setCurLetters={setCurLetters} />
       ) : (
         <BoardRow curLetters={curLetters} setCurLetters={setCurLetters} />
       )}

@@ -55,12 +55,10 @@ export default function Canvas() {
   };
   const checkStati = (curLetters: any): boolean => {
     if (
-      curLetters
-        .map((letter: any) => letter.status)
-        .reduce((p: number, c: number) => c + p, 0) < 5
+      curLetters.map((letter: any) => letter.status).indexOf(0) === -1 // If "0" is not in array of statuses.
     )
-      return false;
-    return true;
+      return true;
+    return false;
   };
 
   return (
