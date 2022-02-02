@@ -8,6 +8,7 @@ interface IProps {
     status: number;
   }[];
   index: number;
+  disable?: boolean;
 }
 
 export default function Cell({
@@ -15,8 +16,10 @@ export default function Cell({
   setCurLetters,
   curLetters,
   index,
+  disable,
 }: IProps) {
   const handleCellClick = () => {
+    if (disable) return;
     if (curLetters[index].char === "") return;
     let curStatus = curLetters[index].status;
     if (curStatus === 3) curStatus = 0;

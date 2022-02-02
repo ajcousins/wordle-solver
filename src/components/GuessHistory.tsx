@@ -13,7 +13,9 @@ export default function GuessHistory({ guessHistory, setCurLetters }: IProps) {
   return (
     <div>
       {guessHistory.map((row) => {
-        return <BoardRow curLetters={row} setCurLetters={setCurLetters} />;
+        return (
+          <BoardRow curLetters={row} setCurLetters={setCurLetters} disable />
+        );
       })}
     </div>
   );
