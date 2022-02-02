@@ -16,8 +16,8 @@ body {
 
 // MODIFIERS
 .top-bottom-pad-16 {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 // UI ELEMENTS
@@ -45,8 +45,8 @@ body {
 .instruction {
   // background-color: blue;
   display: flex;
-  height: 90px;
-  // padding: 2em;
+  // height: 90px;
+  padding: 1em;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -119,6 +119,16 @@ body {
         background-color: #d3d6da;
       }
     }
+  }
+
+  &__answer {
+    border: 1.5px solid #6aaa64;
+    padding: 0.2em;
+    font-size: 1.5rem;
+    user-select: none;
+    cursor: pointer;
+    background-color: #6aaa64;
+    color: white;
   }
 }
 

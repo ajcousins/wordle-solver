@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import ResultCommentary from "./ResultCommentary";
 
 interface IProps {
   wordList: string[];
@@ -15,21 +16,26 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
 
   return (
     <>
-      <div className={"instruction top-bottom-pad-16"}>
-        It's one of these words...
-      </div>
-      <div className="board-container__poss-words">
-        {wordList.map((word: string) => {
-          return (
-            <div
-              className="board-container__poss-words__word"
-              onClick={() => handleWordPress(word)}
-            >
-              {word}
-            </div>
-          );
-        })}
-      </div>
+      <ResultCommentary quantity={wordList.length} />
+
+      {wordList.length > 1 ? (
+        <div className="board-container__poss-words">
+          {wordList.map((word: string) => {
+            return (
+              <div
+                className="board-container__poss-words__word"
+                onClick={() => handleWordPress(word)}
+              >
+                {word}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="board-container__answer">
+          {wordList[0].toUpperCase()}
+        </div>
+      )}
     </>
   );
 }
