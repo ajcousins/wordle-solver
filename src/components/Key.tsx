@@ -34,15 +34,12 @@ export default function Key({
     let arr = [...curLetters];
 
     if (char === "ENTER") {
-      console.log("ENTER");
-
       // Check if game state is correct for 'ENTER'. ie, no statuses === 0
       if (curLetters.map((letter: any) => letter.status).indexOf(0) !== -1)
         return;
 
       // Generate list of result words
       const newWordList = filterList(wordList, curLetters);
-      console.log("newWordList:", newWordList);
 
       // push curLetters to history
       const historyCopy = [...guessHistory];

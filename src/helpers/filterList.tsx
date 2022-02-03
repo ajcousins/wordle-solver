@@ -45,7 +45,5 @@ export const filterList = (wordList: string[], curLetters: CellLetter[]) => {
     return true;
   });
 
-  console.log("Filtered word list:", possibleWords);
-
   return possibleWords;
 };

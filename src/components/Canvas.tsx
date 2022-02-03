@@ -21,16 +21,12 @@ export default function Canvas() {
 
   // Load Word List
   useEffect(() => {
-    console.log("Load", libraryArr);
     setWordList([...libraryArr]);
   }, []);
 
   // Game State
   useEffect(() => {
-    console.log("curLetters:", curLetters);
     // TO DO: Update gameState if no chars are blank.
-    console.log("Blanks:", checkBlanks(curLetters));
-    console.log("Status:", checkStati(curLetters));
     if (checkBlanks(curLetters) && !checkStati(curLetters)) {
       setGameState(1);
     } else if (checkBlanks(curLetters) && checkStati(curLetters)) {
