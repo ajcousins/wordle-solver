@@ -11,9 +11,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
+Runs the server and frontend app in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run reduceLib PATH/FILENAME.txt`
