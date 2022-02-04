@@ -36,3 +36,7 @@ outputs to...
 // libOutput.tsx
 export const libraryArr = ["again", "broil", "smash", "twice"];
 ```
+
+## References
+
+- [Typescript server setup with React client](https://medium.com/geekculture/deploying-an-express-node-js-react-app-with-typescript-to-azure-web-apps-using-github-actions-25e4e59203e)
