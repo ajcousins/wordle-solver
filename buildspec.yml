@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+  pre_build:
+    commands:
+      - echo ------ Pre build phase ------
+      - tsc --project .
+  build:
+    commands:
+      - echo ------ Build phase ------
+      - npm run build-prod
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist
