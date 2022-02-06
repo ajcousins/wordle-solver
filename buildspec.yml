@@ -4,10 +4,6 @@ phases:
   install:
     runtime-versions:
       nodejs: latest
-  pre_build:
-    commands:
-      - echo ------ Pre build phase ------
-      - tsc --project .
   build:
     commands:
       - echo ------ Build phase ------
