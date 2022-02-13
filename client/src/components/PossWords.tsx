@@ -18,7 +18,7 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
     <>
       <ResultCommentary quantity={wordList.length} />
 
-      {wordList.length > 1 ? (
+      {wordList.length > 1 && (
         <div className="board-container__poss-words">
           {wordList.map((word: { word: string; freq: number }) => {
             return (
@@ -26,12 +26,13 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
                 className="board-container__poss-words__word"
                 onClick={() => handleWordPress(word)}
               >
-                {word}
+                {word.word}
               </div>
             );
           })}
         </div>
-      ) : (
+      )}
+      {wordList.length === 1 && (
         <div className="board-container__answer">
           {wordList[0].word.toUpperCase()}
         </div>
