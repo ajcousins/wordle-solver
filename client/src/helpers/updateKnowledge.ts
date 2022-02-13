@@ -1,4 +1,3 @@
-
 import { CurLetter, Knowledge } from '../types/types';
 
 export const updateKnowledge = (curLetters: CurLetter[], curKnowledge: Knowledge):{} => {
@@ -45,7 +44,6 @@ export const updateKnowledge = (curLetters: CurLetter[], curKnowledge: Knowledge
             // Confirm presence
             newKnowledge[queryLetter.char].confirmedPresence = true;
         }
-
     })
 
     // greys
@@ -55,12 +53,17 @@ export const updateKnowledge = (curLetters: CurLetter[], curKnowledge: Knowledge
 
         // If this letter is grey...
         if (queryLetter.status === 1) {
+
+            // If presence is already confirmed:
+            if (newKnowledge[queryLetter.char].confirmedPresence) {
+                const possPosIdx = newKnowledge[queryLetter.char].possPos.indexOf(index);
+                if (possPosIdx === -1) return;
+                else newKnowledge[queryLetter.char].possPos.splice(possPosIdx, 1);
+            }
             // Remove all possible indexes
-            newKnowledge[queryLetter.char].possPos = [];
+            else newKnowledge[queryLetter.char].possPos = [];
         }
     })
-
-    // console.log("newKnowledge:", newKnowledge);
     
     return newKnowledge;
 }

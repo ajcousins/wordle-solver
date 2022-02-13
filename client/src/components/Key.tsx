@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { filterList } from "../helpers/filterList";
+import { refineList } from "../helpers/refineList";
 import { updateKnowledge } from '../helpers/updateKnowledge'
 import { Knowledge } from '../types/types'
 
@@ -47,15 +48,21 @@ export default function Key({
       if (curLetters.map((letter: any) => letter.status).indexOf(0) !== -1)
         return;
 
+      // Update knowledge
+      const newKnowledge = updateKnowledge(curLetters, curKnowledge)
+
+      setCurKnowledge(newKnowledge)
+
       // Generate list of result words
-      const newWordList = filterList(wordList, curLetters);
+      const newWordList = refineList(wordList, newKnowledge)
+
+      // OLD METHOD
+      // const newWordList = filterList(wordList, curLetters);
 
       // push curLetters to history
       const historyCopy = [...guessHistory];
       historyCopy.push(curLetters);
 
-      // const newKnowledge = updateKnowledge(curLetters, curKnowledge);
-      setCurKnowledge(updateKnowledge(curLetters, curKnowledge))
 
       setGuessHistory(historyCopy);
 
