@@ -13,8 +13,14 @@ export default function GuessHistory({ guessHistory, setCurLetters }: IProps) {
   return (
     <div>
       {guessHistory.map((row) => {
+        const key = row.map((char) => char.char).join("");
         return (
-          <BoardRow curLetters={row} setCurLetters={setCurLetters} disable />
+          <BoardRow
+            key={key}
+            curLetters={row}
+            setCurLetters={setCurLetters}
+            disable
+          />
         );
       })}
     </div>

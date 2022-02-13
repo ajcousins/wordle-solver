@@ -58,6 +58,11 @@ export const refineList = (
     return true;
   });
 
+  // sort by freq
+  newWordList = newWordList.sort((a, b) => {
+    return a.freq > b.freq ? -1 : 1;
+  });
+
   console.log("newWordList:", newWordList);
 
   return newWordList;

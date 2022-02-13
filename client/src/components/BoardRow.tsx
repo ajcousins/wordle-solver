@@ -23,6 +23,7 @@ export default function BoardRow({
     <div className="board-container__board-row">
       {numberRange(0, 5).map((num, i) => (
         <Cell
+          key={num}
           char={curLetters[num].char}
           setCurLetters={setCurLetters}
           curLetters={curLetters}

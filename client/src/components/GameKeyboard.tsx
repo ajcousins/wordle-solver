@@ -41,6 +41,7 @@ export default function GameKeyboard({
           {qwerty[0].map((key) => {
             return (
               <Key
+                key={key}
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
@@ -60,6 +61,7 @@ export default function GameKeyboard({
           {qwerty[1].map((key) => {
             return (
               <Key
+                key={key}
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}
@@ -79,6 +81,7 @@ export default function GameKeyboard({
           {qwerty[2].map((key) => {
             return (
               <Key
+                key={key}
                 char={key}
                 setCurLetters={setCurLetters}
                 curLetters={curLetters}

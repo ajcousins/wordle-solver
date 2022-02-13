@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import ResultCommentary from "./ResultCommentary";
+import { saturation } from "../helpers/saturation";
 
 interface IProps {
   wordList: { word: string; freq: number }[];
@@ -21,9 +22,14 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
       {wordList.length > 1 && (
         <div className="board-container__poss-words">
           {wordList.map((word: { word: string; freq: number }) => {
+            const key = word.word;
             return (
               <div
+                key={key}
                 className="board-container__poss-words__word"
+                style={{
+                  backgroundColor: `hsl(33, 100%, ${saturation(word.freq)}%)`,
+                }}
                 onClick={() => handleWordPress(word)}
               >
                 {word.word}
