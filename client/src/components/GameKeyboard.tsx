@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { qwerty } from "../reference/qwerty";
 import Key from "./Key";
+import { Knowledge } from '../types/types'
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -18,6 +19,8 @@ interface IProps {
     SetStateAction<{ char: string; status: number }[][]>
   >;
   setGameState: Dispatch<SetStateAction<number>>;
+  curKnowledge: Knowledge;
+  setCurKnowledge: Dispatch<SetStateAction<Knowledge>>;
 }
 
 export default function GameKeyboard({
@@ -28,6 +31,8 @@ export default function GameKeyboard({
   guessHistory,
   setGuessHistory,
   setGameState,
+  curKnowledge,
+  setCurKnowledge
 }: IProps) {
   return (
     <div className="game-keyboard">
@@ -44,6 +49,8 @@ export default function GameKeyboard({
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
                 setGameState={setGameState}
+                curKnowledge={curKnowledge}
+                setCurKnowledge={setCurKnowledge}
               />
             );
           })}
@@ -61,6 +68,8 @@ export default function GameKeyboard({
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
                 setGameState={setGameState}
+                curKnowledge={curKnowledge}
+                setCurKnowledge={setCurKnowledge}
               />
             );
           })}
@@ -78,6 +87,8 @@ export default function GameKeyboard({
                 guessHistory={guessHistory}
                 setGuessHistory={setGuessHistory}
                 setGameState={setGameState}
+                curKnowledge={curKnowledge}
+                setCurKnowledge={setCurKnowledge}
               />
             );
           })}

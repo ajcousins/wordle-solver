@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { filterList } from "../helpers/filterList";
+import { updateKnowledge } from '../helpers/updateKnowledge'
+import { Knowledge } from '../types/types'
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -18,6 +20,8 @@ interface IProps {
     SetStateAction<{ char: string; status: number }[][]>
   >;
   setGameState: Dispatch<SetStateAction<number>>;
+  curKnowledge: Knowledge;
+  setCurKnowledge: Dispatch<SetStateAction<Knowledge>>;
 }
 
 export default function Key({
@@ -29,7 +33,12 @@ export default function Key({
   guessHistory,
   setGuessHistory,
   setGameState,
+  curKnowledge,
+  setCurKnowledge
 }: IProps) {
+
+  
+
   const handlePress = (char: string) => {
     let arr = [...curLetters];
 
@@ -44,6 +53,9 @@ export default function Key({
       // push curLetters to history
       const historyCopy = [...guessHistory];
       historyCopy.push(curLetters);
+
+      const newKnowledge = updateKnowledge(curLetters, curKnowledge);
+
       setGuessHistory(historyCopy);
 
       // clear curLetters
