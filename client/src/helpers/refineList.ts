@@ -2,7 +2,7 @@ import { Knowledge } from '../types/types';
 
 export const refineList = (wordList:string[], knowledge:Knowledge) => {
 
-    const newWordList = [...wordList];
+    let newWordList = [...wordList];
 
     // Parse Knowledge
     const alphabet = Object.keys(knowledge); // a, b, c, d...
@@ -16,20 +16,34 @@ export const refineList = (wordList:string[], knowledge:Knowledge) => {
         }
     }
 
-    console.log("confirmedPositions:", confirmedPositions);
+    const confirmedPresence = alphabet.filter((char) => knowledge[char].confirmedPresence);
+
+    // console.log("confirmedPositions:", confirmedPositions);
+    console.log("confirmedPresence:", confirmedPresence);
     
-
-
-    newWordList.filter((word) => {
+    
+    newWordList = newWordList.filter((word) => {
+        
+        const wordArr = word.split("");
 
         // 1. word MUST have letter in any confirmed positions
-    
+        if (!confirmedPositions.every((char, index) => {
+            if (!char) return true;
+            if (char === wordArr[index]) return true;
+        })) return false;
+
+
         // 2. word MUST have letter if presence is confirmed in knowledge
+        if (!confirmedPresence.every((queryChar) => {
+            return wordArr.some((char) => char === queryChar)
+        })) return false;
     
         // 3. each letter must be possible in its position
 
-
+        return true;
     })
+
+    
 
     return newWordList;
 }
