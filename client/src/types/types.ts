@@ -9,5 +9,6 @@ export interface Knowledge {
 
 export interface KnowledgeInfo {
     confirmedPos: number[]; 
+    confirmedPresence: boolean;
     possPos: number[];
 }
