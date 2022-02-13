@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { qwerty } from "../reference/qwerty";
 import Key from "./Key";
-import { Knowledge } from '../types/types'
+import { Knowledge } from "../types/types";
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -9,8 +9,8 @@ interface IProps {
     char: string;
     status: number;
   }[];
-  wordList: string[];
-  setWordList: Dispatch<SetStateAction<string[]>>;
+  wordList: { word: string; freq: number }[];
+  setWordList: Dispatch<SetStateAction<{ word: string; freq: number }[]>>;
   guessHistory: {
     char: string;
     status: number;
@@ -32,7 +32,7 @@ export default function GameKeyboard({
   setGuessHistory,
   setGameState,
   curKnowledge,
-  setCurKnowledge
+  setCurKnowledge,
 }: IProps) {
   return (
     <div className="game-keyboard">

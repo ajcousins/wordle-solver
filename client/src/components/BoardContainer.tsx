@@ -13,7 +13,7 @@ interface IProps {
     char: string;
     status: number;
   }[][];
-  wordList: string[];
+  wordList: { word: string; freq: number }[];
   gameState: number;
 }
 

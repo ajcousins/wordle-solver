@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "reduceLib": "node ./src/scripts/reduce.js"
+    "reduceLib": "node ./src/scripts/reduce.js",
+    "parseFreqs": "node ./src/scripts/parseFreqs.js"
   },
   "eslintConfig": {
     "extends": [

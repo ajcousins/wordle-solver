@@ -4,7 +4,7 @@ import BoardContainer from "./BoardContainer";
 import GameKeyboard from "./GameKeyboard";
 import Instruction from "./Instruction";
 import { libraryArr } from "../reference/libOutput";
-import {initialKnowledge} from '../helpers/initialKnowledge'
+import { initialKnowledge } from "../helpers/initialKnowledge";
 import { Knowledge } from "../types/types";
 
 export default function Canvas() {
@@ -16,20 +16,18 @@ export default function Canvas() {
     { char: "", status: 0 },
   ]);
   const [gameState, setGameState] = useState(0);
-  const [wordList, setWordList] = useState<string[]>([]);
+  const [wordList, setWordList] = useState<{ word: string; freq: number }[]>(
+    []
+  );
   const [guessHistory, setGuessHistory] = useState<
     { char: string; status: number }[][]
   >([]);
 
-  const [curKnowledge, setCurKnowledge] = useState<Knowledge>(initialKnowledge)
-
+  const [curKnowledge, setCurKnowledge] = useState<Knowledge>(initialKnowledge);
 
   // First load => Load Word List. Reset knowledge.
   useEffect(() => {
     setWordList([...libraryArr]);
-    // setCurKnowledge({...initialKnowledge})
-    // console.log(curKnowledge);
-    
   }, []);
 
   useEffect(() => {

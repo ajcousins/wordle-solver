@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { filterList } from "../helpers/filterList";
 import { refineList } from "../helpers/refineList";
-import { updateKnowledge } from '../helpers/updateKnowledge'
-import { Knowledge } from '../types/types'
+import { updateKnowledge } from "../helpers/updateKnowledge";
+import { Knowledge } from "../types/types";
 
 interface IProps {
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
@@ -11,8 +11,8 @@ interface IProps {
     char: string;
     status: number;
   }[];
-  wordList: string[];
-  setWordList: Dispatch<SetStateAction<string[]>>;
+  wordList: { word: string; freq: number }[];
+  setWordList: Dispatch<SetStateAction<{ word: string; freq: number }[]>>;
   guessHistory: {
     char: string;
     status: number;
@@ -35,11 +35,8 @@ export default function Key({
   setGuessHistory,
   setGameState,
   curKnowledge,
-  setCurKnowledge
+  setCurKnowledge,
 }: IProps) {
-
-  
-
   const handlePress = (char: string) => {
     let arr = [...curLetters];
 
@@ -49,12 +46,12 @@ export default function Key({
         return;
 
       // Update knowledge
-      const newKnowledge = updateKnowledge(curLetters, curKnowledge)
+      const newKnowledge = updateKnowledge(curLetters, curKnowledge);
 
-      setCurKnowledge(newKnowledge)
+      setCurKnowledge(newKnowledge);
 
       // Generate list of result words
-      const newWordList = refineList(wordList, newKnowledge)
+      const newWordList = refineList(wordList, newKnowledge);
 
       // OLD METHOD
       // const newWordList = filterList(wordList, curLetters);
@@ -62,7 +59,6 @@ export default function Key({
       // push curLetters to history
       const historyCopy = [...guessHistory];
       historyCopy.push(curLetters);
-
 
       setGuessHistory(historyCopy);
 

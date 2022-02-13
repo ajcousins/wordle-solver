@@ -2,13 +2,13 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import ResultCommentary from "./ResultCommentary";
 
 interface IProps {
-  wordList: string[];
+  wordList: { word: string; freq: number }[];
   setCurLetters: Dispatch<SetStateAction<{ char: string; status: number }[]>>;
 }
 
 export default function PossWords({ wordList, setCurLetters }: IProps) {
-  const handleWordPress = (word: string) => {
-    const letters = word.split("").map((char: string) => {
+  const handleWordPress = (word: { word: string; freq: number }) => {
+    const letters = word.word.split("").map((char: string) => {
       return { char: char.toUpperCase(), status: 0 };
     });
     setCurLetters(letters);
@@ -20,7 +20,7 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
 
       {wordList.length > 1 ? (
         <div className="board-container__poss-words">
-          {wordList.map((word: string) => {
+          {wordList.map((word: { word: string; freq: number }) => {
             return (
               <div
                 className="board-container__poss-words__word"
@@ -33,7 +33,7 @@ export default function PossWords({ wordList, setCurLetters }: IProps) {
         </div>
       ) : (
         <div className="board-container__answer">
-          {wordList[0].toUpperCase()}
+          {wordList[0].word.toUpperCase()}
         </div>
       )}
     </>
