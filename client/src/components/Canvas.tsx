@@ -33,7 +33,7 @@ export default function Canvas() {
   }, []);
 
   useEffect(() => {
-    console.log(curKnowledge);
+    console.log("curKnowledge:", curKnowledge);
   }, [curKnowledge]);
 
   // Game State

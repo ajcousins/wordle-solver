@@ -54,7 +54,8 @@ export default function Key({
       const historyCopy = [...guessHistory];
       historyCopy.push(curLetters);
 
-      const newKnowledge = updateKnowledge(curLetters, curKnowledge);
+      // const newKnowledge = updateKnowledge(curLetters, curKnowledge);
+      setCurKnowledge(updateKnowledge(curLetters, curKnowledge))
 
       setGuessHistory(historyCopy);
 
