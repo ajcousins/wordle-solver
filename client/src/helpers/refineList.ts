@@ -4,7 +4,7 @@ export const refineList = (wordList:string[], knowledge:Knowledge) => {
 
     let newWordList = [...wordList];
 
-    // Parse Knowledge
+    // Summarise Knowledge
     const alphabet = Object.keys(knowledge); // a, b, c, d...
 
     const confirmedPositions = new Array(5).fill(undefined);
@@ -17,11 +17,8 @@ export const refineList = (wordList:string[], knowledge:Knowledge) => {
     }
 
     const confirmedPresence = alphabet.filter((char) => knowledge[char].confirmedPresence);
-
-    // console.log("confirmedPositions:", confirmedPositions);
-    console.log("confirmedPresence:", confirmedPresence);
     
-    
+    // Parse Word List
     newWordList = newWordList.filter((word) => {
         
         const wordArr = word.split("");
@@ -39,11 +36,21 @@ export const refineList = (wordList:string[], knowledge:Knowledge) => {
         })) return false;
     
         // 3. each letter must be possible in its position
+        if (!wordArr.every((char, index) => {
 
+            if (knowledge[char].possPos.indexOf(index) === -1) {
+                if (knowledge[char].confirmedPos.indexOf(index) === -1)
+                return false
+                else return true;
+            }
+            else return true
+        })) return false;
+
+        // If word passes all tests, let through filter
         return true;
     })
-
     
-
+    console.log("newWordList:", newWordList);
+    
     return newWordList;
 }
