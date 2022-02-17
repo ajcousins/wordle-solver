@@ -1777,7 +1777,7 @@ export const libraryArr = [
   { word: "slant", freq: 0.000001252 },
   { word: "slash", freq: 0.00000145263 },
   { word: "slate", freq: 0.00000482279 },
-  { word: "slave", freq: 0.0000184773 },
+  { word: "slave", freq: -1 },
   { word: "sleek", freq: 0.00000120166 },
   { word: "sleep", freq: 0.0000378317 },
   { word: "sleet", freq: 0.000000633064 },
