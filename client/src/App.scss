@@ -4,13 +4,20 @@
 }
 
 html {
-  height: 100%;
+  height: -webkit-fill-available;
 }
 
 body {
   font-family: "Clear Sans", "Helvetica Neue", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}
+
+#root {
+  height: 100%;
 }
 
 .top-bottom-pad-16 {
@@ -22,7 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: rgba(232, 232, 232, 0.164);
-  height: 100vh;
+  height: 100%;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -147,6 +154,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
   }
   &__spacer-050 {
     flex: 0.5;
